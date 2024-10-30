@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Link from "next/link";
+import NavLink from "@/app/NavLink";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +30,42 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} flex min-h-full flex-col antialiased`}
       >
-        {children}
+        <header className="text-sm font-medium">
+          <div className="mx-auto flex max-w-6xl gap-4 px-4 py-4">
+            <NavLink
+              className="text-gray-400 data-[active]:text-gray-900"
+              href="/"
+            >
+              Ask a question
+            </NavLink>
+            <NavLink
+              className="text-gray-400 data-[active]:text-gray-900"
+              href="/chat"
+            >
+              Chat
+            </NavLink>
+          </div>
+        </header>
+
+        <main className="flex grow flex-col">{children}</main>
+
+        <footer className="bg-gray-50 text-sm text-gray-500">
+          <div className="mx-auto max-w-6xl px-4 py-6">
+            Powered by{" "}
+            <Link
+              className="font-medium underline underline-offset-2"
+              target="_blank"
+              href="https://www.together.ai/"
+            >
+              Together AI
+            </Link>
+            . View the source on{" "}
+            <Link href="#" className="font-medium underline underline-offset-2">
+              GitHub
+            </Link>
+            .
+          </div>
+        </footer>
       </body>
     </html>
   );
